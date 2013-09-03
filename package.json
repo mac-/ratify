@@ -1,0 +1,52 @@
+{
+	"name": "ratify",
+	"description": "A Hapi plugin for validating the schema of path, query, request body, and response body params using JSON-schema",
+	"contributors": [
+		"Mac Angell <mac.ang311@gmail.com>"
+	],
+	"version": "0.1.0",
+	"dependencies": {
+		"async": "0.x.x",
+		"z-schema": "1.x.x",
+		"underscore": "1.x.x"
+	},
+	"devDependencies": {
+		"mocha": "1.x.x",
+		"jshint": "2.x.x",
+		"travis-cov": "0.2.x",
+		"blanket": "1.0.x"
+	},
+	"peerDependencies": {
+		"hapi": "1.x.x"
+	},
+	"keywords": [
+		"hapi",
+		"plugin",
+		"JSON",
+		"schema",
+		"validate",
+		"validation",
+		"documentation",
+		"docs"
+	],
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"main": "./lib/ratify.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mac-/ratify"
+	},
+	"scripts": {
+		"test": "make test && make test-cov",
+		"blanket": {
+			"pattern": "//^((?!\/node_modules\/)(?!\/test\/).)*$/ig",
+			"onlyCwd": true,
+			"data-cover-flags": {
+				"branchTracking": true
+			}
+		},
+		"travis-cov": { "threshold": 95 }
+	},
+	"subdomain": "ratify"
+}
