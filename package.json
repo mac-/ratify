@@ -4,7 +4,7 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"dependencies": {
 		"async": "0.x.x",
 		"z-schema": "1.x.x",
