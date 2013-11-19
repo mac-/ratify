@@ -6,7 +6,6 @@
 	"es3": false,
 	"forin": true,
 	"immed": true,
-	"indent": 0,
 	"latedef": true,
 	"newcap": false,
 	"noarg": false,
