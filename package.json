@@ -4,7 +4,7 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "0.2.5",
+	"version": "0.2.6",
 	"dependencies": {
 		"async": "0.x.x",
 		"z-schema": "1.x.x",
@@ -14,7 +14,10 @@
 		"mocha": "1.x.x",
 		"jshint": "2.x.x",
 		"travis-cov": "0.2.x",
-		"blanket": "1.0.x"
+		"blanket": "1.0.x",
+		"rewire": "2.x.x",
+		"coveralls": "2.x.x",
+		"mocha-lcov-reporter": "0.x.x"
 	},
 	"peerDependencies": {
 		"hapi": "1.x.x"
@@ -38,7 +41,7 @@
 		"url": "https://github.com/mac-/ratify"
 	},
 	"scripts": {
-		"test": "make test && make test-cov",
+		"test": "make test && make test-cov && make test-lcov | ./node_modules/coveralls/bin/coveralls.js",
 		"blanket": {
 			"pattern": "//^((?!\/node_modules\/)(?!\/test\/).)*$/ig",
 			"onlyCwd": true,
@@ -46,7 +49,7 @@
 				"branchTracking": true
 			}
 		},
-		"travis-cov": { "threshold": 95 }
+		"travis-cov": { "threshold": 100 }
 	},
 	"license": "MIT"
 }
