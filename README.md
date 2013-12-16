@@ -71,6 +71,22 @@ Once your server is set to use ratify, you can specify route-specific validation
 
 All schemas should follow the [JSON schema specification](http://json-schema.org/).
 
+#### Type Conversion
+
+In the process of validating the properties based on the schema, ratify will attempt to convert path, header, and query params to the type defined in the schema. For example, if you have a query paramter called `limit` and it's type is `number`, since all query parameters are parsed as strings by Hapi, ratify will convert the string to a number.
+
+Ratify can also specifically convert query parameters that are intended to be arrays. For example, both of the following query strings will result in a property called `types` having an array value:
+
+* `?types=first&types=second&types=third`
+* `?types[0]=first&types[2]=third&types[1]=second`
+
+Result:
+
+```
+{
+	types: ['first', 'second', 'third']
+}
+
 ### Swagger Documentation
 
 Ratify automatically generates routes that produce JSON in the format of the [Swagger API Specification](https://github.com/wordnik/swagger-core). In order to ge tthe most of the documentation, it's best to ensure there are descriptions to all your parameters as allowed by the JSON schema spec.
