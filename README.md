@@ -86,6 +86,7 @@ Result:
 {
 	types: ['first', 'second', 'third']
 }
+```
 
 ### Swagger Documentation
 
