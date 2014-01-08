@@ -620,6 +620,23 @@ describe('RouteSchemaManager Unit Tests', function() {
 				mockRequest = {
 					_route: mockRoute1,
 					_response: {
+						_payload: ['{"string":"fnord"}']
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
+				assert(!error, 'initialize should not return error');
+				var report = routeSchemaManager.validateResponse(mockRequest);
+				assert(report.valid, 'response obj should be valid');
+				done();
+			});
+		});
+
+		it('should use the fallback method to validate response for route successfully', function(done) {
+
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute1,
+					_response: {
 						raw: {
 							string: 'fnord'
 						}
@@ -639,9 +656,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 				mockRequest = {
 					_route: mockRoute2,
 					_response: {
-						raw: {
-							string: 'fnord'
-						}
+						_payload: ['{"string":"fnord"}']
 					}
 				};
 			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
@@ -658,9 +673,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 				mockRequest = {
 					_route: mockRoute1,
 					_response: {
-						raw: {
-							string: true
-						}
+						_payload: ['{"string":true}']
 					}
 				};
 			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
