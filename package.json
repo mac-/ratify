@@ -4,23 +4,24 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "0.2.10",
+	"version": "0.3.0",
 	"dependencies": {
 		"async": "0.x.x",
-		"z-schema": "1.x.x",
+		"z-schema": "2.x.x",
 		"underscore": "1.x.x"
 	},
 	"devDependencies": {
 		"mocha": "1.x.x",
 		"jshint": "2.x.x",
-		"travis-cov": "0.2.x",
-		"blanket": "1.0.x",
+		"travis-cov": "0.x.x",
+		"blanket": "1.x.x",
 		"rewire": "2.x.x",
 		"coveralls": "2.x.x",
-		"mocha-lcov-reporter": "0.x.x"
+		"mocha-lcov-reporter": "0.x.x",
+		"node-dependencies": "0.x.x"
 	},
 	"peerDependencies": {
-		"hapi": "1.x.x"
+		"hapi": "3.x.x"
 	},
 	"keywords": [
 		"hapi",
@@ -41,7 +42,9 @@
 		"url": "https://github.com/mac-/ratify"
 	},
 	"scripts": {
-		"test": "make test && make test-cov && make test-lcov | ./node_modules/coveralls/bin/coveralls.js",
+		"test": "make test && make test-cov && make test-lcov | ./node_modules/coveralls/bin/coveralls.js"
+	},
+	"config": {
 		"blanket": {
 			"pattern": "//^((?!\/node_modules\/)(?!\/test\/).)*$/ig",
 			"onlyCwd": true,

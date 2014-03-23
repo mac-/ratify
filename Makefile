@@ -1,5 +1,5 @@
 clean:
-	npm cache clean && rm -rf node_modules/*
+	rm -rf node_modules/*
 
 install:
 	npm install
@@ -17,5 +17,8 @@ test-cov:
 test-cov-html:
 	@NODE_ENV=test ./node_modules/.bin/mocha --require blanket --recursive --timeout 3000 -R html-cov test > test/coverage.html
 	xdg-open "file://${CURDIR}/test/coverage.html" &
+
+check-deps:
+	./node_modules/.bin/node-dependencies
 
 .PHONY: test test-cov test-cov-html

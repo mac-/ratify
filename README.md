@@ -1,7 +1,7 @@
 ratify
 ======
 
-A Hapi plugin for validating the schema of path, query, request body, and response body params using [JSON-schema](http://json-schema.org/)
+A Hapi plugin for validating the schema of path, query, request body, and response body params using [JSON-schema](http://json-schema.org/), while providing documenation for your end points via [Swagger](https://helloreverb.com/developers/swagger)
 
 
 [![Build Status](https://secure.travis-ci.org/mac-/ratify.png)](http://travis-ci.org/mac-/ratify)
