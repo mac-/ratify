@@ -92,5 +92,3 @@ Result:
 
 Ratify automatically generates routes that produce JSON in the format of the [Swagger API Specification](https://github.com/wordnik/swagger-core). In order to ge tthe most of the documentation, it's best to ensure there are descriptions to all your parameters as allowed by the JSON schema spec.
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mac-/ratify/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
