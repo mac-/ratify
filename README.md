@@ -22,13 +22,40 @@ To install this plugin on your Hapie server, do something similar to this:
 	var Hapi = require('hapi');
 	var server = new Hapi.Server();
 
-	var ratifyConfig = {};
+	var ratifyOptions = {};
 
-	server.pack.require('ratify', ratifyConfig, function(err) {
+	server.pack.require('ratify', ratifyOptions, function(err) {
 		if (err) {
 			console.log('error', 'Failed loading plugin: ratify');
 		}
 	});
+
+## Plugin Options
+
+### `auth`
+
+Used to add authentication to the swagger routes that get created by the plugin. Valid values are described [here](https://github.com/spumko/hapi/blob/master/docs/Reference.md#route-options) under the `auth` property.
+
+Defaults to `false`
+
+### `startingPath`
+
+The path at which all of the swagger routes begin at. This is the ednpoint you would pass to an instance of the swagger UI.
+
+Defaults to `'/api-docs'`
+
+### `apiVersion`
+
+The version of your API.
+
+Defaults to `''`
+
+### `responseContentTypes`
+
+A collection of valid response types returned by your services.
+
+Defaults to `['application/json']`
+
 
 ### Parameter Validation
 
@@ -91,4 +118,12 @@ Result:
 ### Swagger Documentation
 
 Ratify automatically generates routes that produce JSON in the format of the [Swagger API Specification](https://github.com/wordnik/swagger-core). In order to ge tthe most of the documentation, it's best to ensure there are descriptions to all your parameters as allowed by the JSON schema spec.
+
+## Version Compatibility
+
+### Currently compatible with: Hapi 4.x.x
+
+* 0.2.x - Hapi 1.x.x
+* 0.3.x - Don't use!
+* 0.4.x - Hapi 4.x.x
 

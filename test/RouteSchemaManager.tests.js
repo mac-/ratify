@@ -619,27 +619,8 @@ describe('RouteSchemaManager Unit Tests', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute1,
-					_response: {
-						_payload: ['{"string":"fnord"}']
-					}
-				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateResponse(mockRequest);
-				assert(report.valid, 'response obj should be valid');
-				done();
-			});
-		});
-
-		it('should use the fallback method to validate response for route successfully', function(done) {
-
-			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
-				mockRequest = {
-					_route: mockRoute1,
-					_response: {
-						raw: {
-							string: 'fnord'
-						}
+					response: {
+						source: {string:'fnord'}
 					}
 				};
 			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
@@ -655,8 +636,8 @@ describe('RouteSchemaManager Unit Tests', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute2,
-					_response: {
-						_payload: ['{"string":"fnord"}']
+					response: {
+						source: {string:'fnord'}
 					}
 				};
 			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
@@ -672,8 +653,26 @@ describe('RouteSchemaManager Unit Tests', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute1,
-					_response: {
-						_payload: ['{"string":true}']
+					response: {
+						source: {string:true}
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
+				assert(!error, 'initialize should not return error');
+				var report = routeSchemaManager.validateResponse(mockRequest);
+				assert(!report.valid, 'response obj should not be valid');
+				assert(report.errors, 'errors obj should be valid');
+				done();
+			});
+		});
+
+		it('should fail validation of response when response is non-object', function(done) {
+
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute1,
+					response: {
+						source: 'fnord'
 					}
 				};
 			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
