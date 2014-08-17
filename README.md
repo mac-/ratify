@@ -24,7 +24,7 @@ To install this plugin on your Hapie server, do something similar to this:
 
 	var ratifyOptions = {};
 
-	server.pack.require('ratify', ratifyOptions, function(err) {
+	server.pack.register({ plugin: require('ratify') }, ratifyOptions, function(err) {
 		if (err) {
 			console.log('error', 'Failed loading plugin: ratify');
 		}
@@ -121,9 +121,10 @@ Ratify automatically generates routes that produce JSON in the format of the [Sw
 
 ## Version Compatibility
 
-### Currently compatible with: Hapi 4.x.x
+### Currently compatible with: Hapi 6.x.x
 
 * 0.2.x - Hapi 1.x.x
 * 0.3.x - Don't use!
 * 0.4.x - Hapi 4.x.x
+* 0.5.x - Hapi 6.x.x
 

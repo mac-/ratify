@@ -85,22 +85,6 @@ var assert = require('assert'),
 	},
 	mockRoute3 = {
 		method: 'POST',
-		path: '/another/bad/fnord/{string}/{number}',
-		server: {
-			info: {
-				uri: 'http://fnord.com'
-			}
-		},
-		settings: {
-			plugins: {
-				ratify: {
-					headers: 'invalid config',
-				}
-			}
-		}
-	},
-	mockRoute4 = {
-		method: 'POST',
 		path: '/yet/another/bad/fnord/{string}/{number}',
 		server: {
 			info: {
@@ -118,7 +102,7 @@ var assert = require('assert'),
 			}
 		}
 	},
-	mockRoutes = [mockRoute1, mockRoute2, mockRoute3];
+	mockRoutes = [mockRoute1, mockRoute2];
 
 describe('RouteSchemaManager Unit Tests', function() {
 
@@ -146,7 +130,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 
 		it('should return an error if unable to compile routes', function(done) {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig);
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute4], function(error) {
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute3], function(error) {
 				assert(error, 'initialize should return error');
 				done();
 			});
