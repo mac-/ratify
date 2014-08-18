@@ -38,9 +38,15 @@ Used to add authentication to the swagger routes that get created by the plugin.
 
 Defaults to `false`
 
+### `baseUrl`
+
+The protocol, hostname, and port where the application is running.
+
+Defaults to `'http://localhost'`
+
 ### `startingPath`
 
-The path at which all of the swagger routes begin at. This is the ednpoint you would pass to an instance of the swagger UI.
+The path at which all of the swagger routes begin at. This is the endpoint you would pass to an instance of the swagger UI.
 
 Defaults to `'/api-docs'`
 
