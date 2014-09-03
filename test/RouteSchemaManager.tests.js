@@ -482,6 +482,52 @@ describe('RouteSchemaManager Unit Tests', function() {
 				done();
 			});
 		});
+
+		it('should fail validation of payload when no payload is present', function(done) {
+
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute1,
+					payload: null,
+					raw: {
+						req: {
+							headers: {
+								'content-type': 'application/json'
+							}
+						}
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
+				assert(!error, 'initialize should not return error');
+				var report = routeSchemaManager.validatePayload(mockRequest);
+				assert(!report.valid, 'payload obj should not be valid');
+				assert(report.errors, 'errors obj should be valid');
+				done();
+			});
+		});
+
+		it('should fail validation of payload when no content-type header present', function(done) {
+
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute1,
+					payload: {
+						string: 'fnord'
+					},
+					raw: {
+						req: {
+							headers: {}
+						}
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
+				assert(!error, 'initialize should not return error');
+				var report = routeSchemaManager.validatePayload(mockRequest);
+				assert(!report.valid, 'payload obj should not be valid');
+				assert(report.errors, 'errors obj should be valid');
+				done();
+			});
+		});
 	});
 
 /*

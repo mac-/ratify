@@ -75,7 +75,7 @@ before(function(done) {
 
 
 
-describe('hapi-statsd plugin tests', function() {
+describe('ratify plugin tests', function() {
 
 	it('should provide a swagger docs end point', function(done) {
 
