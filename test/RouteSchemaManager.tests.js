@@ -117,23 +117,24 @@ describe('RouteSchemaManager Unit Tests', function() {
 	888 888  888 888  "Y888 888 "Y888888 888 888 88888888  "Y8888  888   T88b "Y88P"   "Y88888  "Y888 "Y8888   88888P'
 */
 	describe('initializeRoutes', function() {
-		it('should not compile the same routes more than once', function(done) {
+		it('should not compile the same routes more than once', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig);
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-					assert(!error, 'initialize should not return error');
-					done();
-				});
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			// if it gets here no errors were thrown
 		});
 
-		it('should return an error if unable to compile routes', function(done) {
+		it('should return an error if unable to compile routes', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig);
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute3], function(error) {
-				assert(error, 'initialize should return error');
-				done();
-			});
+			var error;
+			try {
+				routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute3]);
+			}
+			catch (er){
+				error = er;
+			}
+
+			assert(error, 'initialize should return error');
 		});
 	});
 
@@ -148,7 +149,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 	  Y88P   "Y888888 888 888  "Y88888 "Y888888  "Y888 "Y8888  888       "Y888888  "Y888 888  888
 */
 	describe('validatePath', function() {
-		it('should validate path params for route successfully', function(done) {
+		it('should validate path params for route successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -158,16 +159,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						number: '12345'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePath(mockRequest);
-				assert(report.valid, 'path obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePath(mockRequest);
+			assert(report.valid, 'path obj should be valid');
 		});
 
-		it('should validate path params for route with no path schema successfully', function(done) {
-
+		it('should validate path params for route with no path schema successfully', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute2,
@@ -176,16 +173,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						number: '12345'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePath(mockRequest);
-				assert(report.valid, 'path obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePath(mockRequest);
+			assert(report.valid, 'path obj should be valid');
 		});
 
-		it('should fail validation of path params', function(done) {
-
+		it('should fail validation of path params', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute1,
@@ -194,13 +187,10 @@ describe('RouteSchemaManager Unit Tests', function() {
 						number: []
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePath(mockRequest);
-				assert(!report.valid, 'path obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePath(mockRequest);
+			assert(!report.valid, 'path obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 	});
 
@@ -218,8 +208,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 	                                                                                                  "Y88P"
 */
 	describe('validateQuery', function() {
-		it('should validate query params for route successfully', function(done) {
-
+		it('should validate query params for route successfully', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute1,
@@ -231,16 +220,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						]
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(report.valid, 'query obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(report.valid, 'query obj should be valid');
 		});
 
-		it('should validate query params for route with no query schema successfully', function(done) {
-
+		it('should validate query params for route with no query schema successfully', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute2,
@@ -252,16 +237,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						]
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(report.valid, 'query obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(report.valid, 'query obj should be valid');
 		});
 
-		it('should validate query params successfully while converting properties to arrays if defined as such by schema', function(done) {
-
+		it('should validate query params successfully while converting properties to arrays if defined as such by schema', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute1,
@@ -270,15 +251,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						array: 'fnord1'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(report.valid, 'query obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(report.valid, 'query obj should be valid');
 		});
 
-		it('should validate query params successfully while converting properties to arrays (from objects) if defined as such by schema', function(done) {
+		it('should validate query params successfully while converting properties to arrays (from objects) if defined as such by schema', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -289,15 +267,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						'array[1]': 'fnord2'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(report.valid, 'query obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(report.valid, 'query obj should be valid');
 		});
 
-		it('should validate query params successfully while converting properties to booleans (true) if defined as such by schema', function(done) {
+		it('should validate query params successfully while converting properties to booleans (true) if defined as such by schema', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -307,16 +282,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						bool: 'true'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(report.valid, 'query obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(report.valid, 'query obj should be valid');
 		});
 
-		it('should validate query params successfully while converting properties to booleans (false) if defined as such by schema', function(done) {
-
+		it('should validate query params successfully while converting properties to booleans (false) if defined as such by schema', function() {
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
 					_route: mockRoute1,
@@ -325,15 +296,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						bool: 'false'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(report.valid, 'query obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(report.valid, 'query obj should be valid');
 		});
 
-		it('should not validate query params successfully while avoiding the conversion of properties to different types when the types cannot be coerced to the type defined in the schema', function(done) {
+		it('should not validate query params successfully while avoiding the conversion of properties to different types when the types cannot be coerced to the type defined in the schema', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -344,15 +312,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						bool: 'truefalse'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(!report.valid, 'query obj should not be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(!report.valid, 'query obj should not be valid');
 		});
 
-		it('should fail validation of query params', function(done) {
+		it('should fail validation of query params', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -361,13 +326,10 @@ describe('RouteSchemaManager Unit Tests', function() {
 						string: true
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateQuery(mockRequest);
-				assert(!report.valid, 'query obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateQuery(mockRequest);
+			assert(!report.valid, 'query obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 	});
 
@@ -385,7 +347,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 	                                                                               "Y88P"
 */
 	describe('validatePayload', function() {
-		it('should validate payload for route successfully', function(done) {
+		it('should validate payload for route successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -401,15 +363,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePayload(mockRequest);
-				assert(report.valid, 'payload obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(report.valid, 'payload obj should be valid');
 		});
 
-		it('should validate payload and convert types for route successfully for a form post', function(done) {
+		it('should validate payload and convert types for route successfully for a form post', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -426,15 +385,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePayload(mockRequest);
-				assert(report.valid, 'payload obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(report.valid, 'payload obj should be valid');
 		});
 
-		it('should validate payload for route with no payload schema successfully', function(done) {
+		it('should validate payload for route with no payload schema successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -450,15 +406,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePayload(mockRequest);
-				assert(report.valid, 'payload obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(report.valid, 'payload obj should be valid');
 		});
 
-		it('should fail validation of payload', function(done) {
+		it('should fail validation of payload', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -474,16 +427,13 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePayload(mockRequest);
-				assert(!report.valid, 'payload obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(!report.valid, 'payload obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 
-		it('should fail validation of payload when no payload is present', function(done) {
+		it('should fail validation of payload when no payload is present', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -497,16 +447,13 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePayload(mockRequest);
-				assert(!report.valid, 'payload obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(!report.valid, 'payload obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 
-		it('should fail validation of payload when no content-type header present', function(done) {
+		it('should fail validation of payload when no content-type header present', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -520,13 +467,10 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validatePayload(mockRequest);
-				assert(!report.valid, 'payload obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(!report.valid, 'payload obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 	});
 
@@ -541,7 +485,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 	  Y88P   "Y888888 888 888  "Y88888 "Y888888  "Y888 "Y8888  888    888  "Y8888  "Y888888  "Y88888  "Y8888  888      88888P' 
 */
 	describe('validateHeaders', function() {
-		it('should validate header params for route successfully', function(done) {
+		it('should validate header params for route successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -555,15 +499,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateHeaders(mockRequest);
-				assert(report.valid, 'header obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateHeaders(mockRequest);
+			assert(report.valid, 'header obj should be valid');
 		});
 
-		it('should validate header params for route successfully while converting properties to types if defined by schema', function(done) {
+		it('should validate header params for route successfully while converting properties to types if defined by schema', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -577,15 +518,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateHeaders(mockRequest);
-				assert(report.valid, 'header obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateHeaders(mockRequest);
+			assert(report.valid, 'header obj should be valid');
 		});
 
-		it('should validate header params for route with no header schema successfully', function(done) {
+		it('should validate header params for route with no header schema successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -599,15 +537,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateHeaders(mockRequest);
-				assert(report.valid, 'header obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateHeaders(mockRequest);
+			assert(report.valid, 'header obj should be valid');
 		});
 
-		it('should fail validation of header params', function(done) {
+		it('should fail validation of header params', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -620,13 +555,10 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateHeaders(mockRequest);
-				assert(!report.valid, 'header obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateHeaders(mockRequest);
+			assert(!report.valid, 'header obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 	});
 
@@ -644,7 +576,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 	                                                                                       888
 */
 	describe('validateResponse', function() {
-		it('should validate response for route successfully', function(done) {
+		it('should validate response for route successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -653,15 +585,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						source: {string:'fnord'}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateResponse(mockRequest);
-				assert(report.valid, 'response obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateResponse(mockRequest);
+			assert(report.valid, 'response obj should be valid');
 		});
 
-		it('should validate response for route with no response schema successfully', function(done) {
+		it('should validate response for route with no response schema successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -670,15 +599,12 @@ describe('RouteSchemaManager Unit Tests', function() {
 						source: {string:'fnord'}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateResponse(mockRequest);
-				assert(report.valid, 'response obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateResponse(mockRequest);
+			assert(report.valid, 'response obj should be valid');
 		});
 
-		it('should fail validation of response', function(done) {
+		it('should fail validation of response', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -687,16 +613,13 @@ describe('RouteSchemaManager Unit Tests', function() {
 						source: {string:true}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateResponse(mockRequest);
-				assert(!report.valid, 'response obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateResponse(mockRequest);
+			assert(!report.valid, 'response obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 
-		it('should fail validation of response when response is non-object', function(done) {
+		it('should fail validation of response when response is non-object', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -705,13 +628,10 @@ describe('RouteSchemaManager Unit Tests', function() {
 						source: 'fnord'
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes, function(error) {
-				assert(!error, 'initialize should not return error');
-				var report = routeSchemaManager.validateResponse(mockRequest);
-				assert(!report.valid, 'response obj should not be valid');
-				assert(report.errors, 'errors obj should be valid');
-				done();
-			});
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateResponse(mockRequest);
+			assert(!report.valid, 'response obj should not be valid');
+			assert(report.errors, 'errors obj should be valid');
 		});
 	});
 });

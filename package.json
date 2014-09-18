@@ -6,11 +6,10 @@
 	],
 	"version": "0.5.2",
 	"dependencies": {
-		"async": "0.x.x",
-		"z-schema": "2.x.x",
 		"underscore": "1.x.x",
-		"hoek": "2.x.x"
-	},
+		"hoek": "2.x.x",
+		"z-schema": "3.x.x"
+  },
 	"devDependencies": {
 		"mocha": "1.x.x",
 		"jshint": "2.x.x",
