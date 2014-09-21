@@ -102,7 +102,25 @@ var assert = require('assert'),
 			}
 		}
 	},
-	mockRoutes = [mockRoute1, mockRoute2];
+	mockRoute4 = {
+		method: 'POST',
+		path: '/good/fnord/{string}/{number}',
+		server: {
+			info: {
+				uri: 'http://fnord.com'
+			}
+		},
+		settings: {
+			plugins: {
+				ratify: {
+					response: {
+						schema: stringSchema
+					}
+				}
+			}
+		}
+	},
+	mockRoutes = [mockRoute1, mockRoute2, mockRoute4];
 
 describe('RouteSchemaManager Unit Tests', function() {
 
@@ -590,6 +608,20 @@ describe('RouteSchemaManager Unit Tests', function() {
 			assert(report.valid, 'response obj should be valid');
 		});
 
+		it('should validate a string response for route successfully', function() {
+
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute4,
+					response: {
+						source: 'fnord'
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validateResponse(mockRequest);
+			assert(report.valid, 'response string should be valid');
+		});
+
 		it('should validate response for route with no response schema successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
@@ -619,19 +651,5 @@ describe('RouteSchemaManager Unit Tests', function() {
 			assert(report.errors, 'errors obj should be valid');
 		});
 
-		it('should fail validation of response when response is non-object', function() {
-
-			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
-				mockRequest = {
-					_route: mockRoute1,
-					response: {
-						source: 'fnord'
-					}
-				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
-			var report = routeSchemaManager.validateResponse(mockRequest);
-			assert(!report.valid, 'response obj should not be valid');
-			assert(report.errors, 'errors obj should be valid');
-		});
 	});
 });
