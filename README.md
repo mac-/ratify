@@ -11,13 +11,31 @@ A Hapi plugin for validating the schema of path, query, request body, and respon
 
 [![NPM](https://nodei.co/npm/ratify.png?downloads=true&stars=true)](https://nodei.co/npm/ratify/)
 
+## Contributing
+
+This module makes use of a `Makefile` for building/testing purposes. After obtaining a copy of the repo, run the following commands to make sure everything is in working condition before you start your work:
+
+	make install
+	make test
+
+Before committing a change to your fork/branch, run the following commands to make sure nothing is broken:
+
+	make test
+	make test-cov
+
+Don't forget to bump the version in the `package.json` using the [semver](http://semver.org/spec/v2.0.0.html) spec as a guide for which part to bump. Submit a pull request when your work is complete.
+
+***Notes:***
+* Please do your best to ensure the code coverage does not drop. If new unit tests are required to maintain the same level of coverage, please include those in your pull request.
+* Please follow the same coding/formatting practices that have been established in the module.
+
 ## Installation
 
 	npm install ratify
 
 ## Usage
 
-To install this plugin on your Hapie server, do something similar to this:
+To install this plugin on your Hapi server, do something similar to this:
 
 	var Hapi = require('hapi');
 	var server = new Hapi.Server();
