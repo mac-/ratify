@@ -122,6 +122,9 @@ Once your server is set to use ratify, you can specify route-specific validation
 
 All schemas should follow the [JSON schema specification](http://json-schema.org/).
 
+***Notes:***
+In addition to the JSON schema defined types, ratify allows you to specify "file" as a payload type. If this is specified, no validation agains JSON schema is performed, but swagger documentation will still be provided.
+
 #### Type Conversion
 
 In the process of validating the properties based on the schema, ratify will attempt to convert path, header, and query params to the type defined in the schema. For example, if you have a query paramter called `limit` and it's type is `number`, since all query parameters are parsed as strings by Hapi, ratify will convert the string to a number.

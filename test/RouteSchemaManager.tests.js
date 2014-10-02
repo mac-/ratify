@@ -120,6 +120,24 @@ var assert = require('assert'),
 			}
 		}
 	},
+	mockRoute5 = {
+		method: 'POST',
+		path: '/good/fnord',
+		server: {
+			info: {
+				uri: 'http://fnord.com'
+			}
+		},
+		settings: {
+			plugins: {
+				ratify: {
+					payload: {
+						type: 'file'
+					}
+				}
+			}
+		}
+	},
 	mockRoutes = [mockRoute1, mockRoute2, mockRoute4];
 
 describe('RouteSchemaManager Unit Tests', function() {
@@ -406,6 +424,26 @@ describe('RouteSchemaManager Unit Tests', function() {
 			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, mockRoutes);
 			var report = routeSchemaManager.validatePayload(mockRequest);
 			assert(report.valid, 'payload obj should be valid');
+		});
+
+		it('should validate payload for route successfully for a file upload', function() {
+			var fs = require('fs');
+			var data = fs.readFileSync('./test/jshint/config.json');
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute1,
+					payload: data,
+					raw: {
+						req: {
+							headers: {
+								'content-type': 'multipart/form-data'
+							}
+						}
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute5]);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(report.valid, 'file payload should be valid');
 		});
 
 		it('should validate payload for route with no payload schema successfully', function() {
