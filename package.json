@@ -8,7 +8,8 @@
   "dependencies": {
     "underscore": "1.x.x",
     "hoek": "2.x.x",
-    "z-schema": "^3.0.1"
+    "z-schema": "^3.0.1",
+    "z-schema-errors": "0.0.1"
   },
   "devDependencies": {
     "mocha": "1.x.x",
