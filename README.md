@@ -80,6 +80,13 @@ A collection of valid response types returned by your services.
 
 Defaults to `['application/json']`
 
+### `swaggerHooks`
+
+An object in which the properties represent swagger generated elements and the values must be functions to be invoked to customize how those elements are processed.
+
+Possible values:
+* `params`: `function(params, route, type)`
+* `operation`: `function(operation, route, resourceType, path)`
 
 ### Parameter Validation
 
