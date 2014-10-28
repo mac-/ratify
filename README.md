@@ -82,11 +82,15 @@ Defaults to `['application/json']`
 
 ### `swaggerHooks`
 
-An object in which the properties represent swagger generated elements and the values must be functions to be invoked to customize how those elements are processed.
+An object in which the property names represent swagger generated elements and the values must be functions to be invoked to customize how those elements are processed.
 
 Possible values:
 * `params`: `function(params, route, type)`
 * `operation`: `function(operation, route, resourceType, path)`
+
+### `errorReporters`
+
+An object in which the property keys represent elements that can be validated (`"headers"`, `"query"`, `"path"`, `"payload"`, `"response"`) and the values are initialized [ZSchemaErrors instances](https://github.com/dschenkelman/z-schema-errors) to be used to report those errors.
 
 ### Parameter Validation
 
