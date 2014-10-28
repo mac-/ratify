@@ -159,7 +159,7 @@ Ratify automatically generates routes that produce JSON in the format of the [Sw
 
 ## Version Compatibility
 
-### Currently compatible with: Hapi 6.x.x
+### Currently compatible with: Hapi 7.x.x
 
 * 0.2.x - Hapi 1.x.x
 * 0.3.x - Don't use!
