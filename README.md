@@ -164,5 +164,6 @@ Ratify automatically generates routes that produce JSON in the format of the [Sw
 * 0.2.x - Hapi 1.x.x
 * 0.3.x - Don't use!
 * 0.4.x - Hapi 4.x.x
-* 0.5.x - Hapi 6.x.x
+* 0.6.x - Hapi 6.x.x
+* 0.7.x - Hapi 7.x.x
 
