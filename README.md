@@ -3,9 +3,9 @@ ratify
 
 A Hapi plugin for validating the schema of path, query, request body, and response body params using [JSON-schema](http://json-schema.org/), while providing documenation for your end points via [Swagger](https://helloreverb.com/developers/swagger)
 
-
 [![Build Status](https://secure.travis-ci.org/mac-/ratify.png)](http://travis-ci.org/mac-/ratify)
 [![Coverage Status](https://coveralls.io/repos/mac-/ratify/badge.png)](https://coveralls.io/r/mac-/ratify)
+[![Code Climate](https://codeclimate.com/github/mac-/ratify.png)](https://codeclimate.com/github/mac-/ratify)
 [![NPM version](https://badge.fury.io/js/ratify.png)](http://badge.fury.io/js/ratify)
 [![Dependency Status](https://david-dm.org/mac-/ratify.png)](https://david-dm.org/mac-/ratify)
 
