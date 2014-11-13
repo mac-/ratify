@@ -6,11 +6,11 @@
   ],
   "version": "0.7.1",
   "dependencies": {
-    "underscore": "1.x.x",
     "hoek": "2.x.x",
     "z-schema": "^3.0.1",
     "z-schema-errors": "0.0.1",
-    "capitalize": "^0.5.0"
+    "capitalize": "^0.5.0",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "mocha": "1.x.x",
