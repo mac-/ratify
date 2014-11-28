@@ -138,6 +138,24 @@ var assert = require('assert'),
 			}
 		}
 	},
+	mockRoute6 = {
+		method: 'POST',
+		path: '/good/fnord/allow/empty/body',
+		server: {
+			info: {
+				uri: 'http://fnord.com'
+			}
+		},
+		settings: {
+			plugins: {
+				ratify: {
+					payload: {
+						type: [ 'object', 'null' ]
+					}
+				}
+			}
+		}
+	},
 	mockRoutes = [mockRoute1, mockRoute2, mockRoute4];
 
 describe('RouteSchemaManager Unit Tests', function() {
@@ -509,7 +527,7 @@ describe('RouteSchemaManager Unit Tests', function() {
 			assert(report.errors, 'errors obj should be valid');
 		});
 
-		it('should fail validation of payload when no content-type header present', function() {
+		it('should fail validation of payload when no content-type header present if there is content', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
@@ -527,6 +545,22 @@ describe('RouteSchemaManager Unit Tests', function() {
 			var report = routeSchemaManager.validatePayload(mockRequest);
 			assert(!report.valid, 'payload obj should not be valid');
 			assert(report.errors, 'errors obj should be valid');
+		});
+
+		it('should pass validation of payload when no content-type header present if there is no content', function() {
+
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute6,
+					raw: {
+						req: {
+							headers: {}
+						}
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute6.server.info.uri, mockRoutes);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(report.valid, 'payload obj should be valid');
 		});
 	});
 
