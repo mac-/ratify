@@ -92,6 +92,10 @@ Possible values:
 
 An object in which the property keys represent elements that can be validated (`"headers"`, `"query"`, `"path"`, `"payload"`, `"response"`) and the values are initialized [ZSchemaErrors instances](https://github.com/dschenkelman/z-schema-errors) to be used to report those errors.
 
+### `docsCaching`
+
+`true` if swagger documentation should be cached between requests, `false` if it should be generated each time. Defaults to `true`.
+
 ### Parameter Validation
 
 Once your server is set to use ratify, you can specify route-specific validations in each route config like so:
