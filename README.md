@@ -87,6 +87,7 @@ An object in which the property names represent swagger generated elements and t
 Possible values:
 * `params`: `function(params, route, type)`
 * `operation`: `function(operation, route, resourceType, path)`
+* `routeNameGroup`: `function(route)`
 
 ### `errorReporters`
 
