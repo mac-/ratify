@@ -3,9 +3,10 @@ var assert = require('assert'),
 	Hapi = require('hapi');
 
 before(function(done) {
-	server = new Hapi.Server('localhost', '8085', { cors: true } );
-	server.pack.register({
-		plugin: plugin,
+	server = new Hapi.Server();
+	server.connection({ port: '8085', host: 'localhost', routes: { cors: true }});
+	server.register({
+		register: plugin,
 		options: { }
 	}, function (err) {
 		var get = function (request, reply) {
