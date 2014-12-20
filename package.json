@@ -4,13 +4,14 @@
   "contributors": [
     "Mac Angell <mac.ang311@gmail.com>"
   ],
-  "version": "0.7.7",
+  "version": "0.8.0",
   "dependencies": {
     "hoek": "2.x.x",
     "z-schema": "^3.0.1",
     "z-schema-errors": "0.0.1",
     "capitalize": "^0.5.0",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "boom": "^2.6.1"
   },
   "devDependencies": {
     "mocha": "1.x.x",
@@ -21,11 +22,11 @@
     "coveralls": "2.x.x",
     "mocha-lcov-reporter": "0.x.x",
     "node-dependencies": "0.x.x",
-    "hapi": "7.x.x",
+    "hapi": "8.x.x",
     "catbox-memory": "1.x.x"
   },
   "peerDependencies": {
-    "hapi": "7.x.x"
+    "hapi": "8.x.x"
   },
   "keywords": [
     "hapi",
