@@ -4,7 +4,7 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "0.9.0",
+	"version": "0.10.0",
 	"dependencies": {
 		"hoek": "2.x.x",
 		"z-schema": "^3.0.1",
@@ -21,11 +21,11 @@
 		"rewire": "2.x.x",
 		"coveralls": "2.x.x",
 		"mocha-lcov-reporter": "0.x.x",
-		"hapi": "8.x.x",
+		"hapi": "9.x.x",
 		"catbox-memory": "1.x.x"
 	},
 	"peerDependencies": {
-		"hapi": "8.x.x"
+		"hapi": "9.x.x"
 	},
 	"keywords": [
 		"hapi",
