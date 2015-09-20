@@ -4,7 +4,7 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "0.11.0",
+	"version": "1.0.0",
 	"dependencies": {
 		"hoek": "2.x.x",
 		"z-schema": "^3.0.1",
@@ -38,7 +38,7 @@
 		"docs"
 	],
 	"engines": {
-		"node": ">=0.10.0"
+		"node": ">=4.0.0"
 	},
 	"main": "./lib/ratify.js",
 	"repository": {
