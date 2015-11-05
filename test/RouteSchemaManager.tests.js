@@ -15,10 +15,15 @@ var assert = require('assert'),
 	booleanSchema = {
 		type: 'boolean'
 	},
+	numberArraySchema = {
+		type: 'array',
+		items: numberSchema
+	},
 	objSchema = {
 		type: 'object',
 		properties: {
-			string: stringSchema
+			string: stringSchema,
+			numberArray: numberArraySchema
 		}
 	},
 	arraySchema = {
@@ -463,7 +468,29 @@ describe('RouteSchemaManager Unit Tests', function() {
 			var report = routeSchemaManager.validatePayload(mockRequest);
 			assert(report.valid, 'file payload should be valid');
 		});
-
+		
+		it('should validate payload for route successfully for a file upload with array data', function() {
+			var fs = require('fs');
+			var data = fs.readFileSync('./test/jshint/config.json');
+			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
+				mockRequest = {
+					_route: mockRoute1,
+					payload: {
+						numberArray: ['5', '6']
+					},
+					raw: {
+						req: {
+							headers: {
+								'content-type': 'multipart/form-data'
+							}
+						}
+					}
+				};
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute1]);
+			var report = routeSchemaManager.validatePayload(mockRequest);
+			assert(report.valid, 'file payload should be valid');
+		});
+		
 		it('should validate payload for route with no payload schema successfully', function() {
 
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
