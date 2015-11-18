@@ -4,14 +4,14 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"dependencies": {
-		"hoek": "2.x.x",
+		"hoek": "^3.0.4",
 		"z-schema": "^3.0.1",
 		"z-schema-errors": "^0.2.0",
 		"capitalize": "^1.0.0",
 		"lodash": "^3.9.1",
-		"boom": "^2.6.1"
+		"boom": "^3.0.0"
 	},
 	"devDependencies": {
 		"mocha": "1.x.x",
@@ -21,11 +21,11 @@
 		"rewire": "2.x.x",
 		"coveralls": "2.x.x",
 		"mocha-lcov-reporter": "0.x.x",
-		"hapi": "10.x.x",
-		"catbox-memory": "1.x.x"
+		"hapi": "^11.1.1",
+		"catbox-memory": "^2.0.1"
 	},
 	"peerDependencies": {
-		"hapi": "10.x.x"
+		"hapi": "^11.1.1"
 	},
 	"keywords": [
 		"hapi",
