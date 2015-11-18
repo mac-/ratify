@@ -38,7 +38,7 @@
 		"docs"
 	],
 	"engines": {
-		"node": ">=4.0.0"
+		"node": ">=4.2.0"
 	},
 	"main": "./lib/ratify.js",
 	"repository": {
