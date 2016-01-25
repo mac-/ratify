@@ -45,5 +45,7 @@
 	"supernew": false,
 	"validthis": false,
 
+	"-W003": true,
+
 	"node": true
 }
