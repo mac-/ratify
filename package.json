@@ -1,71 +1,68 @@
 {
-	"name": "ratify",
-	"description": "A Hapi plugin for validating the schema of path, query, request body, and response body params using JSON-schema",
-	"contributors": [
-		"Mac Angell <mac.ang311@gmail.com>"
-	],
-	"version": "2.2.0",
-	"dependencies": {
-		"hoek": "^3.0.4",
-		"z-schema": "^3.0.1",
-		"z-schema-errors": "^0.2.0",
-		"capitalize": "^1.0.0",
-		"lodash": "^3.9.1",
-		"boom": "^3.0.0",
-		"is-stream": "1.0.1"
-	},
-	"devDependencies": {
-		"mocha": "1.x.x",
-		"jshint": "2.x.x",
-		"travis-cov": "0.x.x",
-		"blanket": "1.x.x",
-		"rewire": "2.x.x",
-		"coveralls": "2.x.x",
-		"mocha-lcov-reporter": "0.x.x",
-		"hapi": "^11.1.1",
-		"catbox-memory": "^2.0.1"
-	},
-	"peerDependencies": {
-		"hapi": "^11.1.1"
-	},
-	"keywords": [
-		"hapi",
-		"plugin",
-		"JSON",
-		"schema",
-		"validate",
-		"validation",
-		"documentation",
-		"docs"
-	],
-	"engines": {
-		"node": ">=4.2.0"
-	},
-	"main": "./lib/ratify.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/mac-/ratify"
-	},
-	"scripts": {
-		"lint": "jshint lib/* --config test/jshint/config.json",
-		"pretest": "npm run lint",
-		"test": "mocha --recursive --reporter spec --timeout 3000 test",
-		"test-cov": "mocha --require blanket --recursive --timeout 3000 -R travis-cov test",
-		"test-lcov": "mocha --require blanket --recursive --timeout 3000 -R mocha-lcov-reporter test | ./node_modules/coveralls/bin/coveralls.js",
-		"test-cov-html": "mocha --require blanket --recursive --timeout 3000 -R html-cov test > test/coverage.html",
-		"clean": "rm -fr node_modules"
-	},
-	"config": {
-		"blanket": {
-			"pattern": "//^((?!/node_modules/)(?!/test/).)*$/ig",
-			"onlyCwd": true,
-			"data-cover-flags": {
-				"branchTracking": true
-			}
-		},
-		"travis-cov": {
-			"threshold": 84
-		}
-	},
-	"license": "MIT"
+  "name": "ratify",
+  "description": "A Hapi plugin for validating the schema of path, query, request body, and response body params using JSON-schema",
+  "contributors": [
+    "Mac Angell <mac.ang311@gmail.com>"
+  ],
+  "version": "2.2.0-auth0",
+  "dependencies": {
+    "hoek": "^3.0.4",
+    "z-schema": "^3.0.1",
+    "z-schema-errors": "^0.2.0",
+    "capitalize": "^1.0.0",
+    "lodash": "^3.9.1",
+    "boom": "^3.0.0",
+    "is-stream": "1.0.1"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "jshint": "2.x.x",
+    "travis-cov": "0.x.x",
+    "blanket": "1.x.x",
+    "rewire": "2.x.x",
+    "coveralls": "2.x.x",
+    "mocha-lcov-reporter": "0.x.x",
+    "hapi": "^11.1.1",
+    "catbox-memory": "^2.0.1"
+  },
+  "keywords": [
+    "hapi",
+    "plugin",
+    "JSON",
+    "schema",
+    "validate",
+    "validation",
+    "documentation",
+    "docs"
+  ],
+  "engines": {
+    "node": ">=4.2.0"
+  },
+  "main": "./lib/ratify.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mac-/ratify"
+  },
+  "scripts": {
+    "lint": "jshint lib/* --config test/jshint/config.json",
+    "pretest": "npm run lint",
+    "test": "mocha --recursive --reporter spec --timeout 3000 test",
+    "test-cov": "mocha --require blanket --recursive --timeout 3000 -R travis-cov test",
+    "test-lcov": "mocha --require blanket --recursive --timeout 3000 -R mocha-lcov-reporter test | ./node_modules/coveralls/bin/coveralls.js",
+    "test-cov-html": "mocha --require blanket --recursive --timeout 3000 -R html-cov test > test/coverage.html",
+    "clean": "rm -fr node_modules"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "//^((?!/node_modules/)(?!/test/).)*$/ig",
+      "onlyCwd": true,
+      "data-cover-flags": {
+        "branchTracking": true
+      }
+    },
+    "travis-cov": {
+      "threshold": 84
+    }
+  },
+  "license": "MIT"
 }
