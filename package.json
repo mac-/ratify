@@ -4,14 +4,15 @@
 	"contributors": [
 		"Mac Angell <mac.ang311@gmail.com>"
 	],
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"dependencies": {
 		"hoek": "^3.0.4",
 		"z-schema": "^3.0.1",
 		"z-schema-errors": "^0.2.0",
 		"capitalize": "^1.0.0",
 		"lodash": "^3.9.1",
-		"boom": "^3.0.0"
+		"boom": "^3.0.0",
+		"is-stream": "1.0.1"
 	},
 	"devDependencies": {
 		"mocha": "1.x.x",

@@ -162,6 +162,30 @@ var assert = require('assert'),
 			}
 		}
 	},
+	mockRoute7 = {
+		method: 'POST',
+		path: '/good/fnord',
+		server: {
+			info: {
+				uri: 'http://fnord.com'
+			}
+		},
+		settings: {
+			plugins: {
+				ratify: {
+					payload: {
+						type: 'file',
+						properties: {
+							users: {
+								type: 'file'
+							},
+							numberArray: numberArraySchema
+						}
+					}
+				}
+			}
+		}
+	},
 	mockRoutes = [mockRoute1, mockRoute2, mockRoute4];
 
 describe('RouteSchemaManager Unit Tests', function() {
@@ -436,10 +460,10 @@ describe('RouteSchemaManager Unit Tests', function() {
 
 		it('should validate payload for route successfully for a file upload', function() {
 			var fs = require('fs');
-			var data = fs.readFileSync('./test/jshint/config.json');
+			var data = fs.createReadStream('./test/jshint/config.json');
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
-					_route: mockRoute1,
+					_route: mockRoute5,
 					payload: data,
 					raw: {
 						req: {
@@ -453,14 +477,15 @@ describe('RouteSchemaManager Unit Tests', function() {
 			var report = routeSchemaManager.validatePayload(mockRequest);
 			assert(report.valid, 'file payload should be valid');
 		});
-		
-		it('should validate payload for route successfully for a file upload with array data', function() {
+
+		it('should validate payload for route successfully for a file upload with extra data', function() {
 			var fs = require('fs');
-			var data = fs.readFileSync('./test/jshint/config.json');
+			var data = fs.createReadStream('./test/jshint/config.json');
 			var routeSchemaManager = new RouteSchemaManager(rsmConfig),
 				mockRequest = {
-					_route: mockRoute1,
+					_route: mockRoute7,
 					payload: {
+						users: data,
 						numberArray: ['5', '6']
 					},
 					raw: {
@@ -471,9 +496,9 @@ describe('RouteSchemaManager Unit Tests', function() {
 						}
 					}
 				};
-			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute1]);
+			routeSchemaManager.initializeRoutes(mockRoute1.server.info.uri, [mockRoute7]);
 			var report = routeSchemaManager.validatePayload(mockRequest);
-			assert(report.valid, 'file payload should be valid');
+			assert(report.valid, 'file payload with extra data should be valid');
 		});
 		
 		it('should validate payload for route with no payload schema successfully', function() {
