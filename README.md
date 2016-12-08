@@ -42,7 +42,7 @@ To install this plugin on your Hapi server, do something similar to this:
 
 	var ratifyOptions = {};
 
-	server.pack.register({ plugin: require('ratify'), options: ratifyOptions }, function(err) {
+	server.register({ register: require('ratify'), options: ratifyOptions }, function(err) {
 		if (err) {
 			console.log('error', 'Failed loading plugin: ratify');
 		}
