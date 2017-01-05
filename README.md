@@ -156,7 +156,7 @@ Result:
 
 ### Swagger Documentation
 
-Ratify automatically generates routes that produce JSON in the format of the [Swagger API Specification](https://github.com/wordnik/swagger-core). In order to ge tthe most of the documentation, it's best to ensure there are descriptions to all your parameters as allowed by the JSON schema spec.
+Ratify automatically generates routes that produce JSON in the format of the [Swagger API Specification](https://github.com/wordnik/swagger-core). In order to get the most of the documentation, it's best to ensure there are descriptions to all your parameters as allowed by the JSON schema spec.
 
 ## Version Compatibility
 
