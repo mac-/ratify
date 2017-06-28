@@ -4,7 +4,7 @@
   "contributors": [
     "Mac Angell <mac.ang311@gmail.com>"
   ],
-	"version": "3.0.0",
+  "version": "3.0.0-auth0",
   "dependencies": {
     "hoek": "^3.0.4",
     "z-schema": "^3.0.1",
