@@ -22,6 +22,7 @@
 	"maxdepth": 0,
 	"maxstatements": 0,
 	"maxcomplexity": 0,
+	"esversion": 6,
 
 	"asi": false,
 	"boss": true,

@@ -4,7 +4,7 @@
   "contributors": [
     "Mac Angell <mac.ang311@gmail.com>"
   ],
-  "version": "3.0.0-auth0",
+  "version": "4.0.0-auth0",
   "dependencies": {
     "hoek": "^3.0.4",
     "z-schema": "^3.0.1",
@@ -15,15 +15,18 @@
     "is-stream": "1.0.1"
   },
   "devDependencies": {
-    "mocha": "1.x.x",
+    "mocha": "^3.4.2",
     "jshint": "2.x.x",
     "travis-cov": "0.x.x",
     "blanket": "1.x.x",
     "rewire": "2.x.x",
     "coveralls": "2.x.x",
     "mocha-lcov-reporter": "0.x.x",
-    "hapi": "^11.1.1",
+    "hapi": "^17.0.0",
     "catbox-memory": "^2.0.1"
+  },
+  "peerDependencies": {
+    "hapi": ">=17.x.x"
   },
   "keywords": [
     "hapi",
@@ -36,7 +39,7 @@
     "docs"
   ],
   "engines": {
-    "node": ">=4.2.0"
+    "node": ">=8.9.0"
   },
   "main": "./lib/ratify.js",
   "repository": {
