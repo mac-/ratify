@@ -4,3 +4,6 @@ node_modules
 lib-test
 test/coverage*
 .DS*
+
+#IDE
+.idea

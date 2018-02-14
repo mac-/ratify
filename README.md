@@ -172,4 +172,5 @@ Ratify automatically generates routes that produce JSON in the format of the [Sw
 * 1.x.x - Hapi 10.x.x (Node v4)
 * 2.x.x - Hapi 11.x.x
 * 3.x.x - Hapi 16.x.x
+* 4.x.x - Hapi 17.x.x
 
