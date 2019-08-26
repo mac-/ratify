@@ -91,7 +91,7 @@ Possible values:
 
 ### `disableSwagger`
 
-If `false`, the swagger endpoint will not be exposed.
+If `true`, the swagger endpoint will not be exposed.
 
 ### `errorReporters`
 
