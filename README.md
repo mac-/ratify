@@ -89,6 +89,10 @@ Possible values:
 * `operation`: `function(operation, route, resourceType, path)`
 * `routeNameGroup`: `function(route)`
 
+### `disableSwagger`
+
+If `false`, the swagger endpoint will not be exposed.
+
 ### `errorReporters`
 
 An object in which the property keys represent elements that can be validated (`"headers"`, `"query"`, `"path"`, `"payload"`, `"response"`) and the values are initialized [ZSchemaErrors instances](https://github.com/dschenkelman/z-schema-errors) to be used to report those errors.
