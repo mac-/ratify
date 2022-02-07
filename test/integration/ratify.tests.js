@@ -58,7 +58,22 @@ before(async function() {
 									minLength: 3,
 									pattern: '^.+@.+$',
 									description: 'An email address associated to the client'
-								}
+								},
+								nestedObject: {
+									type: 'object',
+									properties: {
+										nestedObject2: {
+											type: 'object',
+											properties: {
+												id: {
+													type: 'string',
+													description: 'sample id field',
+													defaultValue: '123'
+												}
+											}
+										},
+									}
+                                }
 							},
 							required: ['clientId', 'email'],
 							additionalProperties: false
@@ -86,6 +101,25 @@ describe('ratify plugin tests', function() {
 
 		const res = await server.inject('/api-docs/clients')
 		assert(res.statusCode === 200);
+	});
+
+	it('should generate correct models for deeply nested schema', function(done) {
+		server.inject('/api-docs/clients', function (res) {
+			assert(res.statusCode === 200);
+
+			var parsedPayload = JSON.parse(res.payload)
+
+			var nestedRef = parsedPayload.models.get_clients_by_clientId_response.properties.nestedObject.$ref;
+			assert(nestedRef === 'get_clients_by_clientId_response_nestedObject');
+			assert(parsedPayload.models[nestedRef].type === 'object');
+
+			var nestedRef2 = parsedPayload.models[nestedRef].properties.nestedObject2.$ref;
+			assert(nestedRef2 === 'get_clients_by_clientId_response_nestedObject2');
+			assert(parsedPayload.models[nestedRef2].properties.id.description === 'sample id field');
+			assert(parsedPayload.models[nestedRef2].properties.id.defaultValue === '123');
+
+			done();
+		});
 	});
 
 	it('should validate path, headers, and response body against schema', async function() {
