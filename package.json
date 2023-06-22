@@ -4,26 +4,26 @@
   "contributors": [
     "Mac Angell <mac.ang311@gmail.com>"
   ],
-  "version": "4.1.2-0",
+  "version": "4.1.3-0",
   "dependencies": {
-    "hoek": "^3.0.4",
-    "z-schema": "^4.1.1",
-    "z-schema-errors": "^0.2.0",
-    "capitalize": "^1.0.0",
-    "lodash": "^3.9.1",
     "boom": "^3.0.0",
-    "is-stream": "1.0.1"
+    "capitalize": "^1.0.0",
+    "hoek": "^3.0.4",
+    "is-stream": "1.0.1",
+    "lodash": "^4.17.21",
+    "z-schema": "^4.1.1",
+    "z-schema-errors": "^0.2.0"
   },
   "devDependencies": {
-    "mocha": "^3.4.2",
-    "jshint": "2.x.x",
-    "travis-cov": "0.x.x",
     "blanket": "1.x.x",
-    "rewire": "2.x.x",
+    "catbox-memory": "^2.0.1",
     "coveralls": "2.x.x",
-    "mocha-lcov-reporter": "0.x.x",
     "hapi": "^17.0.0",
-    "catbox-memory": "^2.0.1"
+    "jshint": "2.x.x",
+    "mocha": "^3.4.2",
+    "mocha-lcov-reporter": "0.x.x",
+    "rewire": "2.x.x",
+    "travis-cov": "0.x.x"
   },
   "peerDependencies": {
     "hapi": ">=17.x.x"
