@@ -20,7 +20,7 @@
     "coveralls": "2.x.x",
     "hapi": "^17.0.0",
     "jshint": "2.x.x",
-    "mocha": "^3.4.2",
+    "mocha": "^10.2.0",
     "mocha-lcov-reporter": "0.x.x",
     "rewire": "2.x.x",
     "travis-cov": "0.x.x"
